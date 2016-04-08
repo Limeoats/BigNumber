@@ -288,6 +288,9 @@ BigNumber BigNumber::multiply(BigNumber other) {
 }
 
 BigNumber BigNumber::pow(int exponent) {
+    if (exponent < 0) {
+        std::cerr << "Powers less than 0 are not supported" << std::endl;
+    }
     BigNumber result("1");
     while (exponent > 0) {
         if (exponent & 1) {
