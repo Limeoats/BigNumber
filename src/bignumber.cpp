@@ -403,6 +403,9 @@ bool operator<=(BigNumber b1, const BigNumber &b2) {
 }
 
 int BigNumber::operator[](int index) {
+    if (this->_numberString[index] == '-') {
+        std::cerr << "You cannot get the negative sign from the number" << std::endl;
+    }
     return this->_numberString[index] - '0';
 }
 

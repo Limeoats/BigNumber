@@ -52,4 +52,9 @@ int main() {
     assert((BigNumber("-5") <= BigNumber("0")));
     assert((BigNumber("30") <= BigNumber("30")));
     assert((BigNumber("400") <= BigNumber("392342")));
+
+    //Index
+    assert(BigNumber("423")[1] == 2);
+    assert(BigNumber("0")[0] == 0);
+    assert(BigNumber("-5")[1] == 5);
 }
