@@ -1,6 +1,23 @@
-//
-// Created by Mark Guerra on 11/3/15.
-//
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 Mark Guerra
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this
+ * software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+ * to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+ * AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+ * OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
 #include <sstream>
 #include <stack>
@@ -10,19 +27,16 @@
 #include "bignumber.h"
 
 
-//Initializes member variables to default values
 BigNumber::BigNumber() :
     _numberString("")
 {
 }
 
-//Initializes member variables with number values
 BigNumber::BigNumber(std::string number) :
     _numberString(number)
 {
 }
 
-//Adds another big number to the current instance
 BigNumber BigNumber::add(BigNumber other) {
     if (this->_numberString[0] == '-' || other._numberString[0] == '-') {
         if (this->_numberString[0] == '-' && other._numberString[0] == '-') {
@@ -74,7 +88,7 @@ BigNumber BigNumber::add(BigNumber other) {
     return BigNumber(results);
 }
 
-//Subracts another big number from the current instance
+
 BigNumber BigNumber::subtract(BigNumber other) {
     if (this->_numberString[0] == '-' || other._numberString[0] == '-') {
         if (this->_numberString[0] == '-' && other._numberString[0] == '-') {
@@ -193,11 +207,15 @@ BigNumber BigNumber::subtract(BigNumber other) {
 
         i--;
     }
+    //In the case of all 0's, we only want to return one of them
+    if (results.find_first_not_of('0') == std::string::npos) {
+        results = "0";
+    }
 
     return BigNumber(results);
 }
 
-//Multiplies the big number by another big number
+
 BigNumber BigNumber::multiply(BigNumber other) {
     if (this->_numberString[0] == '-' || other._numberString[0] == '-') {
         if (this->_numberString[0] == '-' && other._numberString[0] == '-') {
@@ -269,7 +287,6 @@ BigNumber BigNumber::multiply(BigNumber other) {
 
 }
 
-//Raises the big number to the power of the exponent
 BigNumber BigNumber::pow(int exponent) {
     BigNumber result("1");
     while (exponent > 0) {
@@ -282,17 +299,14 @@ BigNumber BigNumber::pow(int exponent) {
     return result;
 }
 
-//Turns the big number into an std::string and returns it
 std::string BigNumber::getString() {
     return this->_numberString;
 }
 
-//Sets the actual number string equal to a new string
 void BigNumber::setString(std::string newStr) {
     this->_numberString = newStr;
 }
 
-//Makes the big number negative
 void BigNumber::negate() {
     if (this->_numberString[0] == '-') {
         this->_numberString.erase(0, 1);
@@ -302,53 +316,43 @@ void BigNumber::negate() {
     }
 }
 
-//Checks if the other big number is equal to this one
 bool BigNumber::equals(BigNumber other) {
     return this->_numberString == other._numberString;
 }
 
-//Returns the number of digits in the big number
 int BigNumber::digits() {
     return this->_numberString.size() - this->isNegative() ? 1 : 0;
 }
 
-//Determines whether a big number is negative
 bool BigNumber::isNegative() {
     return this->_numberString[0] == '-';
 }
 
-//Overload the output stream operator to print the number
 std::ostream &operator<<(std::ostream &os, const BigNumber &num) {
     os << num._numberString;
     return os;
 }
 
-//Overload the plus operator to add two big numbers together
 BigNumber operator+(BigNumber b1, const BigNumber &b2) {
     return b1.add(b2);
 }
 
-//Overload the minus operator to subtract two big numbers
 BigNumber operator-(BigNumber b1, const BigNumber &b2) {
     return b1.subtract(b2);
 }
 
-//Overload the multiplication operator to multiply two big numbers
 BigNumber operator*(BigNumber b1, const BigNumber &b2) {
     return b1.multiply(b2);
 }
 
-//Overload the exponent operator to raise a big number to an exponent
 BigNumber operator^(BigNumber b1, const int &b2) {
     return b1.pow(b2);
 }
 
-//Overload the equals operator to compare two big numbers
 bool operator==(BigNumber b1, const BigNumber &b2) {
     return b1.equals(b2);
 }
 
-//Overload the greater than operator to compare two big numbers
 bool operator>(BigNumber b1, const BigNumber &b2) {
     if (b1._numberString[0] == '-' || b2._numberString[0] == '-') {
         if (b1._numberString[0] == '-' && b2._numberString[0] == '-') {
@@ -383,27 +387,22 @@ bool operator>(BigNumber b1, const BigNumber &b2) {
     return false;
 }
 
-//Overload the less than operator to compare two big numbers
 bool operator<(BigNumber b1, const BigNumber &b2) {
     return !(b1 == b2) && !(b1 > b2);
 }
 
-//Overload the greater than or equal to operator to compare two big numbers
 bool operator>=(BigNumber b1, const BigNumber &b2) {
     return b1 > b2 || b1 == b2;
 }
 
-//Overload the less than or equal to operator to compare two big numbers
 bool operator<=(BigNumber b1, const BigNumber &b2) {
     return b1 < b2 || b1 == b2;
 }
 
-//Overload the bracket operator for indexing
 int BigNumber::operator[](int index) {
     return this->_numberString[index] - '0';
 }
 
-//Assignment operator
 BigNumber& BigNumber::operator=(const BigNumber &other) {
     this->_numberString = other._numberString;
     return *this;
