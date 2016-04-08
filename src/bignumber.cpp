@@ -282,7 +282,13 @@ BigNumber BigNumber::multiply(BigNumber other) {
     for (int i = 0; i < bigNumbers.size(); i++) {
         b = b.add(bigNumbers[i]);
     }
-    b = BigNumber(b._numberString.erase(0, b._numberString.find_first_not_of('0')));
+    if (b._numberString.find_first_not_of('0') != std::string::npos) {
+        b = BigNumber(b._numberString.erase(0, b._numberString.find_first_not_of('0')));
+    }
+    else {
+        //In the case of all 0's, we only want to return one of them
+        b = BigNumber("0");
+    }
     return b;
 
 }

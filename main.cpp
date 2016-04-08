@@ -19,6 +19,14 @@ int main() {
     assert((BigNumber("482847") - BigNumber("89787941")).getString() == "-89305094");
     assert((BigNumber("6828") - BigNumber("1")).getString() == "6827");
 
+    //Multiplication
+    assert((BigNumber("4") * BigNumber("12")).getString() == "48");
+    assert((BigNumber("3002") * BigNumber("1")).getString() == "3002");
+    assert((BigNumber("99") * BigNumber("0")).getString() == "0");
+    assert((BigNumber("-5") * BigNumber("5")).getString() == "-25");
+    assert((BigNumber("-33") * BigNumber("-2")).getString() == "66");
+    assert((BigNumber("283") * BigNumber("382871")).getString() == "108352493");
+
     //Exponentiation
     assert((BigNumber("2").pow(3)).getString() == "8");
     assert((BigNumber("1").pow(38)).getString() == "1");
@@ -28,30 +36,36 @@ int main() {
     assert((BigNumber("5").pow(0)).getString() == "1");
     assert((BigNumber("-5").pow(2)).getString() == "25");
 
+    //Equals
+    assert(BigNumber("4") == BigNumber("4"));
+    assert(BigNumber("-3") == BigNumber("-3"));
+    assert(BigNumber("0") == BigNumber("0"));
+    assert(BigNumber("938283828178273") == BigNumber("938283828178273"));
+
     //Greater than
-    assert((BigNumber("5") > BigNumber("2")));
-    assert((BigNumber("30") > BigNumber("-40")));
-    assert((BigNumber("-5") > BigNumber("-10")));
-    assert((BigNumber("0") > BigNumber("-1")));
+    assert(BigNumber("5") > BigNumber("2"));
+    assert(BigNumber("30") > BigNumber("-40"));
+    assert(BigNumber("-5") > BigNumber("-10"));
+    assert(BigNumber("0") > BigNumber("-1"));
 
     //Less than
-    assert((BigNumber("10") < BigNumber("20")));
-    assert((BigNumber("-5") < BigNumber("0")));
-    assert((BigNumber("30") < BigNumber("30000")));
+    assert(BigNumber("10") < BigNumber("20"));
+    assert(BigNumber("-5") < BigNumber("0"));
+    assert(BigNumber("30") < BigNumber("30000"));
 
     //Greater than or equal to
-    assert((BigNumber("5") >= BigNumber("0")));
-    assert((BigNumber("-5") >= BigNumber("-5")));
-    assert((BigNumber("-5") >= BigNumber("-10")));
-    assert((BigNumber("0") >= BigNumber("0")));
-    assert((BigNumber("32") >= BigNumber("-32")));
+    assert(BigNumber("5") >= BigNumber("0"));
+    assert(BigNumber("-5") >= BigNumber("-5"));
+    assert(BigNumber("-5") >= BigNumber("-10"));
+    assert(BigNumber("0") >= BigNumber("0"));
+    assert(BigNumber("32") >= BigNumber("-32"));
 
     //Less than or equal to
-    assert((BigNumber("5") <= BigNumber("10")));
-    assert((BigNumber("0") <= BigNumber("0")));
-    assert((BigNumber("-5") <= BigNumber("0")));
-    assert((BigNumber("30") <= BigNumber("30")));
-    assert((BigNumber("400") <= BigNumber("392342")));
+    assert(BigNumber("5") <= BigNumber("10"));
+    assert(BigNumber("0") <= BigNumber("0"));
+    assert(BigNumber("-5") <= BigNumber("0"));
+    assert(BigNumber("30") <= BigNumber("30"));
+    assert(BigNumber("400") <= BigNumber("392342"));
 
     //Index
     assert(BigNumber("423")[1] == 2);
