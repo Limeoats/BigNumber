@@ -132,6 +132,35 @@ public:
      */
     bool isNegative();
 
+    /*
+     * Method: isPositive
+     * Determines whether a big number is positive
+     * Parameters: None
+     * Returns:
+     *   True if positive, otherwise false
+     */
+    bool isPositive();
+
+    /*
+     * Method: isEven
+     * Determines whether a big number is even
+     * Parameters: None
+     * Returns:
+     *   True if even, otherwise false
+     */
+    bool isEven();
+
+    /*
+     * Method: isOdd
+     * Determines whether a big number is odd
+     * Parameters: None
+     * Returns:
+     *   True if odd, otherwise false
+     */
+    bool isOdd();
+
+
+
 
 
     //Operator overloads

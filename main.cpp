@@ -71,4 +71,18 @@ int main() {
     assert(BigNumber("423")[1] == 2);
     assert(BigNumber("0")[0] == 0);
     assert(BigNumber("-5")[1] == 5);
+
+    //Even
+    assert(BigNumber("426").isEven());
+    assert(BigNumber("-20").isEven());
+
+    //Odd
+    assert(BigNumber("83").isOdd());
+    assert(BigNumber("-27").isOdd());
+
+    //Positive
+    assert(BigNumber("38").isPositive());
+
+    //Negative
+    assert(BigNumber("-28382").isNegative());
 }

@@ -31,22 +31,22 @@ Examples:
 
 ##Methods
 ###`add(BigNumber other)`
-Adds another big number to the current instance
+Adds another BigNumber to the current instance
 
 `BigNumber("4").add(BigNumber("20")) => BigNumber("24")`
 
 ###`subtract(BigNumber other)`
-Subtracts another big number from the current instance
+Subtracts another BigNumber from the current instance
 
 `BigNumber("30").subtract(BigNumber("45")) => BigNumber("-15")`
 
 ###`multiply(BigNumber other)`
-Multiplies the big number by another big number
+Multiplies the BigNumber by another BigNumber
 
 `BigNumber("12").multiply(BigNumber("4")) => BigNumber("48")`
 
 ###`pow(int exponent)`
-Raises the big number to the power of the exponent
+Raises the BigNumber to the power of the exponent
 
 `BigNumber("2").pow(3) => BigNumber("8")`
 
@@ -67,7 +67,7 @@ Changes the sign of the BigNumber
     BigNumber("-27").negate() => BigNumber("27")
 
 ###`equals(BigNumber other)`
-Checks if the other big number is equal to this one
+Checks if the other BigNumber is equal to this one
 
 `BigNumber("24").equals(BigNumber("28")) => false`
 
@@ -77,13 +77,28 @@ Returns the number of digits in the BigNumber
 `BigNumber("28374").digits() => 5`
 
 ###`isNegative()`
-Determines whether a big number is negative
+Determines whether a BigNumber is negative
 
 `BigNumber("-278").isNegative() => true`
 
+###`isPositive()`
+Determines whether a BigNumber is positive
+
+`BigNumber("-3").isPositive() => false`
+
+###`isEven()`
+Determines whether a BigNumber is even
+
+`BigNumber("28472310").isEven() => true`
+
+###`isOdd()`
+Determines whether a BigNumber is odd
+
+`BigNumber("283427").isOdd() => true`
+
 
 ##Operator overloads
-The following operators have been overloaded to work with big numbers:
+The following operators have been overloaded to work with BigNumbers:
 
 ###`<<`
 Output stream operator

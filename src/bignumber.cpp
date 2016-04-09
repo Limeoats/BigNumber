@@ -337,6 +337,18 @@ bool BigNumber::isNegative() {
     return this->_numberString[0] == '-';
 }
 
+bool BigNumber::isPositive() {
+    return !this->isNegative();
+}
+
+bool BigNumber::isEven() {
+    return this->_numberString[this->_numberString.length() - 1] % 2 == 0;
+}
+
+bool BigNumber::isOdd() {
+    return !this->isEven();
+}
+
 std::ostream &operator<<(std::ostream &os, const BigNumber &num) {
     os << num._numberString;
     return os;
