@@ -1,6 +1,6 @@
 # BigNumber
 
-BigNumber is a C++ class that allows for the creation and arithmetic of arbitrary-length
+BigNumber is a C++ class that allows for the creation and computation of arbitrary-length
 integers.
 
 The maximum possible length of a BigNumber is `string::max_size`.
