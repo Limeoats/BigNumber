@@ -159,10 +159,6 @@ public:
      */
     bool isOdd();
 
-
-
-
-
     //Operator overloads
 
     //Output stream operator

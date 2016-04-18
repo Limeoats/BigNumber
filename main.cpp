@@ -85,4 +85,6 @@ int main() {
 
     //Negative
     assert(BigNumber("-28382").isNegative());
+
+    std::cout << "BigNumber ran successfully." << std::endl;
 }

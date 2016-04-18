@@ -22,7 +22,6 @@
 #include <sstream>
 #include <stack>
 #include <iostream>
-#include <cstdlib>
 
 #include "bignumber.h"
 
@@ -249,7 +248,7 @@ BigNumber BigNumber::multiply(BigNumber other) {
     std::vector<std::string> results;
     BigNumber num1 = other > *this ? other : *this;
     BigNumber num2 = other > *this ? *this : other;
-    for (int i = 0; i < num1._numberString.size() - num2._numberString.size(); i++) {
+    for (unsigned int i = 0; i < num1._numberString.size() - num2._numberString.size(); i++) {
         num2._numberString.insert(num2._numberString.begin(), '0');
     }
     for (int i = (num2._numberString.size() - 1); i >= 0; i--) {
@@ -275,11 +274,11 @@ BigNumber BigNumber::multiply(BigNumber other) {
         results.push_back(rr);
     }
     std::vector<BigNumber> bigNumbers;
-    for (int i = 0; i < results.size(); i++) {
+    for (unsigned int i = 0; i < results.size(); i++) {
         bigNumbers.push_back(BigNumber(results[i]));
     }
     BigNumber b("0");
-    for (int i = 0; i < bigNumbers.size(); i++) {
+    for (unsigned int i = 0; i < bigNumbers.size(); i++) {
         b = b.add(bigNumbers[i]);
     }
     if (b._numberString.find_first_not_of('0') != std::string::npos) {
@@ -398,7 +397,7 @@ bool operator>(BigNumber b1, const BigNumber &b2) {
         return false;
     }
     else {
-        for (int i = 0; i < b1._numberString.size(); i++) {
+        for (unsigned int i = 0; i < b1._numberString.size(); i++) {
             if (b1[i] == (b2._numberString[i] - '0')) {
                 continue;
             }
