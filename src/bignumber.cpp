@@ -177,22 +177,14 @@ BigNumber BigNumber::subtract(BigNumber other) {
 
 BigNumber BigNumber::multiply(BigNumber other) {
     if (this->isNegative() || other.isNegative()) {
-        if (this->_numberString[0] == '-' && other._numberString[0] == '-') {
-            this->negate();
-            other.negate();
-            return this->multiply(other);
+        if (this->isNegative() && other.isNegative()) {
+            return this->negate().multiply(other.negate());
         }
         else if (this->isNegative() && !other.isNegative()) {
-            this->negate();
-            BigNumber res = this->multiply(other);
-            res.negate();
-            return res;
+            return this->negate().multiply(other).negate();
         }
         else {
-            other.negate();
-            BigNumber res = other.multiply(*this);
-            res.negate();
-            return res;
+            return other.negate().multiply(*this).negate();
         }
     }
     int carry = 0;
