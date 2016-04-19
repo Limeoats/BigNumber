@@ -32,13 +32,6 @@
  */
 class BigNumber {
 public:
-    /* Default constructor
-     * Initializes member variables to default values
-     *  Params: None
-     *  Returns: None
-     */
-    BigNumber();
-
     /* Main constructor
      * Initializes member variables with number values
      *  Params:
@@ -97,14 +90,14 @@ public:
      *    std::string newStr - the new string
      *  Returns: None
      */
-    void setString(std::string newStr);
+    void setString(const std::string &newStr);
 
     /* negate function
      * Makes the big number negative
      *  Params: None
-     *  Returns: None
+     *  Returns: The newly negated big number
      */
-    void negate();
+    BigNumber negate();
 
     /* equals function
      * Checks if the other big number is equal to this one
@@ -113,7 +106,7 @@ public:
      *  Returns:
      *    True if equal, otherwise false
      */
-    bool equals(BigNumber other);
+    bool equals(const BigNumber &other);
 
     /* digits function
      * Returns the number of digits in the big number
@@ -130,7 +123,7 @@ public:
      * Returns:
      *   True if negative, otherwise false
      */
-    bool isNegative();
+    bool isNegative() const;
 
     /*
      * Method: isPositive
