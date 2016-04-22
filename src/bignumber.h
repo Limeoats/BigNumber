@@ -182,6 +182,11 @@ public:
     BigNumber& operator-=(const BigNumber &other);
     BigNumber& operator*=(const BigNumber &other);
 
+    //Increment/Decrement operators
+    BigNumber& operator++();    //Prefix
+    BigNumber& operator--();    //Prefix
+    BigNumber operator++(int); //Postfix
+    BigNumber operator--(int); //Postfix
 
     //Index operator
     int operator[](int index);

@@ -88,5 +88,21 @@ int main() {
     //Negative
     assert(BigNumber("-28382").isNegative());
 
+    //Increment/Decrement operators
+    assert(BigNumber("5")--.getString() == "5");
+    assert((--BigNumber("5")).getString() == "4");
+    assert(BigNumber("10")++.getString() == "10");
+    assert((++BigNumber("10")).getString() == "11");
+
+    BigNumber a("10");
+    a++;
+    assert(a.getString() == "11");
+    ++a;
+    assert(a.getString() == "12");
+    a--;
+    assert(a.getString() == "11");
+    --a;
+    assert(a.getString() == "10");
+
     std::cout << "BigNumber ran successfully." << std::endl;
 }

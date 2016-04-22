@@ -389,3 +389,24 @@ BigNumber& BigNumber::operator*=(const BigNumber &other) {
     return *this;
 }
 
+BigNumber& BigNumber::operator++() {
+    *this += BigNumber("1");
+    return *this;
+}
+
+BigNumber& BigNumber::operator--() {
+    *this -= BigNumber("1");
+    return *this;
+}
+
+BigNumber BigNumber::operator++(int) {
+    BigNumber t(this->getString());
+    ++(*this);
+    return t;
+}
+
+BigNumber BigNumber::operator--(int) {
+    BigNumber t(this->getString());
+    --(*this);
+    return t;
+}

@@ -165,6 +165,26 @@ Multiplies and assigns to the BigNumber
 
 `BigNumber c("3") *= BigNumber("4") => BigNumber("12")`
 
+###`++ (Prefix)
+Increments the BigNumber and returns the newly incremented number
+
+`++BigNumber("10") => BigNumber("11")`
+
+###`-- (Prefix)
+Decrements the BigNumber and returns the newly decremented number
+
+`--BigNumber("34") => BigNumber("33")`
+
+###`++ (Postfix)
+Increments the BigNumber but returns the original value
+
+`BigNumber("20")++ => BigNumber("20")`
+
+###`-- (Postfix)
+Decrements the BigNumber but returns the original value
+
+`BigNumber("14")-- => BigNumber("14")`
+
 ###`[]`
 Indexing operator
 
