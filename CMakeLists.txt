@@ -10,7 +10,7 @@ set(BigNumber_VERSION_MINOR 0)
 
 set(c++version -std=c++11)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Weffc++ -pedantic ${c++version}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Weffc++ -pedantic -Wno-unused-function ${c++version}")
 
 set(SOURCE_FILES
         src/bignumber.cpp  main.cpp )

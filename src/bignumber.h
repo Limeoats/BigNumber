@@ -90,7 +90,7 @@ public:
      *    std::string newStr - the new string
      *  Returns: None
      */
-    void setString(const std::string &newStr);
+    BigNumber setString(const std::string &newStr);
 
     /* negate function
      * Makes the big number negative
@@ -151,6 +151,15 @@ public:
      *   True if odd, otherwise false
      */
     bool isOdd();
+
+    /*
+     * Method: abs
+     * Gets the absolute value of the big number
+     * Parameters: None
+     * Returns:
+     *  A Big Number containing the absolute value
+     */
+    BigNumber abs() const;
 
     //Operator overloads
 

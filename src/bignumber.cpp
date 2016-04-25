@@ -109,13 +109,13 @@ BigNumber BigNumber::subtract(BigNumber other) {
             if (shouldBeTen) {
                 int index = i - 1;
                 for (int a = i - 1; (this->_numberString[a] - '0') == 0; a--) {
-                    this->_numberString[a] = (p + '0');
+                    this->_numberString[a] = static_cast<char>(p + '0');
                     index--;
                 }
                 int t = (this->_numberString[index] - '0') - 1;
-                this->_numberString[index] = (t + '0');
+                this->_numberString[index] = static_cast<char>(t + '0');
             }
-            this->_numberString[i - 1] = (p + '0');
+            this->_numberString[i - 1] = static_cast<char>(p + '0');
             shouldBeTen = false;
         }
         std::stringstream ss;
@@ -137,16 +137,16 @@ BigNumber BigNumber::subtract(BigNumber other) {
     }
     if (takeOffOne) {
         std::string number = "";
-        for (int i = this->_numberString.length() - other._numberString.length() - 1; i >= 0; i--) {
-            if (this->_numberString[i] == '0') {
+        for (int j = this->_numberString.length() - other._numberString.length() - 1; j >= 0; j--) {
+            if (this->_numberString[j] == '0') {
                 number += "0";
                 continue;
             }
             else {
-                number.insert(number.begin(), this->_numberString[i]);
-                int n = atoi(number.c_str());
-                n--;
-                this->_numberString.replace(0, number.size(), std::to_string(n));
+                number.insert(number.begin(), this->_numberString[j]);
+                int t = atoi(number.c_str());
+                t--;
+                this->_numberString.replace(0, number.size(), std::to_string(t));
                 break;
             }
         }
@@ -255,8 +255,9 @@ std::string BigNumber::getString() {
     return this->_numberString;
 }
 
-void BigNumber::setString(const std::string &newStr) {
+BigNumber BigNumber::setString(const std::string &newStr) {
     this->_numberString = newStr;
+    return *this;
 }
 
 BigNumber BigNumber::negate() {
@@ -274,7 +275,7 @@ bool BigNumber::equals(const BigNumber &other) {
 }
 
 int BigNumber::digits() {
-    return this->_numberString.size() - this->isNegative() ? 1 : 0;
+    return this->_numberString.length() - static_cast<int>(this->isNegative());
 }
 
 bool BigNumber::isNegative() const {
@@ -291,6 +292,10 @@ bool BigNumber::isEven() {
 
 bool BigNumber::isOdd() {
     return !this->isEven();
+}
+
+BigNumber BigNumber::abs() const {
+    return BigNumber(this->_numberString.substr(static_cast<unsigned int>(this->isNegative())));
 }
 
 std::ostream &operator<<(std::ostream &os, const BigNumber &num) {

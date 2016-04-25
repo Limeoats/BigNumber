@@ -96,6 +96,11 @@ Determines whether a BigNumber is odd
 
 `BigNumber("283427").isOdd() => true`
 
+###`abs()`
+Gets the absolute value of the BigNumber
+
+`BigNumber("-26").abs() => BigNumber("26")`
+
 
 ##Operator overloads
 The following operators have been overloaded to work with BigNumbers:

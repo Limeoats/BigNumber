@@ -104,5 +104,16 @@ int main() {
     --a;
     assert(a.getString() == "10");
 
+    //Absolute value
+    assert(BigNumber("45").abs().getString() == "45");
+    assert(BigNumber("-325").abs().getString() == "325");
+
+    //Digits
+    assert(BigNumber("28374765").digits() == 8);
+    assert(BigNumber("-3092").digits() == 4);
+
+    //Set string
+    assert(BigNumber("234").setString("-45").getString() == "-45");
+
     std::cout << "BigNumber ran successfully." << std::endl;
 }
