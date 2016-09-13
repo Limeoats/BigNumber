@@ -27,7 +27,7 @@
 
 
 BigNumber::BigNumber(std::string number) :
-    _numberString(number)
+        _numberString(number)
 {
 }
 
@@ -233,20 +233,19 @@ BigNumber BigNumber::multiply(BigNumber other) {
         b = BigNumber("0");
     }
     return b;
-
 }
 
 BigNumber BigNumber::pow(int exponent) {
-    if (exponent < 0) {
-        std::cerr << "Powers less than 0 are not supported" << std::endl;
-    }
+    if (exponent < 0) std::cerr << "Powers less than 0 are not supported" << std::endl;
+    if (exponent == 0) return BigNumber("1");
+    if (exponent == 1) return *this;
     BigNumber result("1");
-    while (exponent > 0) {
+    while (exponent) {
         if (exponent & 1) {
-            result = result.multiply(*this);
+            result *= *this;
         }
-        *this = this->multiply(*this);
-        exponent /= 2;
+        exponent >>= 1;
+        *this *= *this;
     }
     return result;
 }
