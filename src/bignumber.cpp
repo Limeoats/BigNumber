@@ -48,10 +48,10 @@ BigNumber BigNumber::add(BigNumber other) {
     BigNumber num1 = other > *this ? other : *this;
     BigNumber num2 = other > *this ? *this : other;
     int diff = int(num1._numberString.size() - num2._numberString.size());
-    for (int i = 0; i < diff; i++) {
+    for (int i = 0; i < diff; ++i) {
         num2._numberString.insert(num2._numberString.begin(), '0');
     }
-    for (int i = int(num1._numberString.size() - 1); i >= 0; i--) {
+    for (int i = int(num1._numberString.size() - 1); i >= 0; --i) {
         int sum = (num1._numberString[i] - '0') + (num2._numberString[i] - '0') + carry;
         carry = 0;
         if (sum <= 9 || i == 0) {
@@ -94,7 +94,7 @@ BigNumber BigNumber::subtract(BigNumber other) {
     }
 
     int i = int(this->_numberString.size() - 1);
-    for (int j = int(other._numberString.size() - 1); j >= 0; j--) {
+    for (int j = int(other._numberString.size() - 1); j >= 0; --j) {
         if (((this->_numberString[i] - '0') < (other._numberString[j] - '0')) && i > 0) {
             n = char((this->_numberString[i] - '0') + 10);
             takeOffOne = true;
@@ -108,9 +108,9 @@ BigNumber BigNumber::subtract(BigNumber other) {
             }
             if (shouldBeTen) {
                 int index = i - 1;
-                for (int a = i - 1; (this->_numberString[a] - '0') == 0; a--) {
+                for (int a = i - 1; (this->_numberString[a] - '0') == 0; --a) {
                     this->_numberString[a] = static_cast<char>(p + '0');
-                    index--;
+                    --index;
                 }
                 int t = (this->_numberString[index] - '0') - 1;
                 this->_numberString[index] = static_cast<char>(t + '0');
@@ -132,12 +132,12 @@ BigNumber BigNumber::subtract(BigNumber other) {
         }
 
         results.insert(0, ss.str());
-        i--;
+        --i;
         n = 0;
     }
     if (takeOffOne) {
         std::string number = "";
-        for (int j = this->_numberString.length() - other._numberString.length() - 1; j >= 0; j--) {
+        for (int j = this->_numberString.length() - other._numberString.length() - 1; j >= 0; --j) {
             if (this->_numberString[j] == '0') {
                 number += "0";
                 continue;
@@ -145,7 +145,7 @@ BigNumber BigNumber::subtract(BigNumber other) {
             else {
                 number.insert(number.begin(), this->_numberString[j]);
                 int t = atoi(number.c_str());
-                t--;
+                --t;
                 this->_numberString.replace(0, number.size(), std::to_string(t));
                 break;
             }
@@ -164,7 +164,7 @@ BigNumber BigNumber::subtract(BigNumber other) {
             results.insert(0, ss.str());
         }
 
-        i--;
+        --i;
     }
     //In the case of all 0's, we only want to return one of them
     if (results.find_first_not_of('0') == std::string::npos) {
@@ -189,48 +189,39 @@ BigNumber BigNumber::multiply(BigNumber other) {
     }
     int carry = 0;
     int zeroCounter = 0;
-    std::vector<std::string> results;
+    BigNumber b("0");
     BigNumber num1 = other > *this ? other : *this;
     BigNumber num2 = other > *this ? *this : other;
-    for (unsigned int i = 0; i < num1._numberString.size() - num2._numberString.size(); i++) {
+    for (unsigned int i = 0; i < num1._numberString.size() - num2._numberString.size(); ++i) {
         num2._numberString.insert(num2._numberString.begin(), '0');
     }
-    for (int i = (num2._numberString.size() - 1); i >= 0; i--) {
+    for (long long int i = (num2._numberString.size() - 1); i >= 0; --i) {
         std::string rr;
-        for (int j = int(num1._numberString.size() - 1); j >= 0; j--) {
+        for (long long int j = int(num1._numberString.size() - 1); j >= 0; --j) {
             int val = ((num2._numberString[i] - '0') * (num1._numberString[j] - '0')) + carry;
             carry = 0;
             if (val > 9 && j != 0) {
-                int dig = val % 10;
                 carry = val / 10;
-                rr.insert(0, std::to_string(dig));
+                rr.insert(0, std::to_string(val % 10));
             }
             else {
                 rr.insert(0, std::to_string(val));
             }
         }
         if (zeroCounter > 0) {
-            for (int x = 0; x < zeroCounter; x++) {
+            for (int x = 0; x < zeroCounter; ++x) {
                 rr.append("0");
             }
         }
-        zeroCounter++;
-        results.push_back(rr);
-    }
-    std::vector<BigNumber> bigNumbers;
-    for (unsigned int i = 0; i < results.size(); i++) {
-        bigNumbers.push_back(BigNumber(results[i]));
-    }
-    BigNumber b("0");
-    for (unsigned int i = 0; i < bigNumbers.size(); i++) {
-        b = b.add(bigNumbers[i]);
+        ++zeroCounter;
+        b += BigNumber(rr);
     }
     if (b._numberString.find_first_not_of('0') != std::string::npos) {
-        b = BigNumber(b._numberString.erase(0, b._numberString.find_first_not_of('0')));
+        b.setString(b._numberString.erase(0, b._numberString.find_first_not_of('0')));
     }
     else {
         //In the case of all 0's, we only want to return one of them
-        b = BigNumber("0");
+        b.setString("0");
     }
     return b;
 }
@@ -344,7 +335,7 @@ bool operator>(BigNumber b1, const BigNumber &b2) {
         return false;
     }
     else {
-        for (unsigned int i = 0; i < b1._numberString.size(); i++) {
+        for (unsigned int i = 0; i < b1._numberString.size(); ++i) {
             if (b1[i] == (b2._numberString[i] - '0')) {
                 continue;
             }
