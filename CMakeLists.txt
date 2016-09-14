@@ -16,8 +16,14 @@ set(SOURCE_FILES
         src/bignumber.cpp  main.cpp )
 
 add_library(BigNumber ${SOURCE_FILES})
-install(TARGETS BigNumber DESTINATION C:/Libs/BigNumber/lib)
-install(FILES src/bignumber.h DESTINATION C:/Libs/BigNumber/include)
+
+if(WIN32)
+    install(TARGETS BigNumber DESTINATION C:/Libs/BigNumber/lib)
+    install(FILES src/bignumber.h DESTINATION C:/Libs/BigNumber/include)
+else()
+    install(TARGETS BigNumber DESTINATION ~/Library/Frameworks/BigNumber/lib)
+    install(FILES src/bignumber.h DESTINATION ~/Library/Frameworks/BigNumber/include)
+endif()
 
 add_custom_command(
         TARGET BigNumber
