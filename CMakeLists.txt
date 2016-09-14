@@ -15,4 +15,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Weffc++ -pedantic -Wno-un
 set(SOURCE_FILES
         src/bignumber.cpp  main.cpp )
 
-add_executable(BigNumber ${SOURCE_FILES})
+add_library(BigNumber ${SOURCE_FILES})
+install(TARGETS BigNumber DESTINATION C:/Libs/BigNumber/lib)
+install(FILES src/bignumber.h DESTINATION C:/Libs/BigNumber/include)
+
+add_custom_command(
+        TARGET BigNumber
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target install
+)
+
+add_executable(BigNumberRun ${SOURCE_FILES})
