@@ -196,8 +196,7 @@ Indexing operator
 `BigNumber d("26")[1] => 6`
 
 ##License
-This project is under the [MIT License](https://opensource.org/licenses/MIT). Check the
-top of the source files for more information.
+This project is under the [Apache License](https://github.com/Limeoats/Lime2D/blob/master/LICENSE.md).
 
 ##Credit
 The BigNumber class was created by [Mark Guerra](http://www.twitter.com/Limeoats). Visit
