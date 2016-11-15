@@ -50,6 +50,8 @@ public:
      *    The sum of the two big numbers
      */
     BigNumber add(BigNumber other);
+    BigNumber add(long long &other);
+    BigNumber add(std::string &other);
 
     /* Subtract function
      * Subracts another big number from the current instance
@@ -169,6 +171,8 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const BigNumber &num);
     //Plus operator
     friend BigNumber operator+(BigNumber b1, const BigNumber &b2);
+    friend BigNumber operator+(BigNumber b1, const long long &b2);
+    friend BigNumber operator+(BigNumber b1, const std::string &b2);
     //Minus operator
     friend BigNumber operator-(BigNumber b1, const BigNumber &b2);
     //Multiplication operator

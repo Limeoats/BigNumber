@@ -69,6 +69,14 @@ BigNumber BigNumber::add(BigNumber other) {
     return BigNumber(results);
 }
 
+BigNumber BigNumber::add(long long &other) {
+    return this->add(BigNumber(other));
+}
+
+BigNumber BigNumber::add(std::string &other) {
+    return this->add(BigNumber(other));
+}
+
 
 BigNumber BigNumber::subtract(BigNumber other) {
     if (this->isNegative() || other.isNegative()) {
@@ -174,6 +182,13 @@ BigNumber BigNumber::subtract(BigNumber other) {
     if (results.find_first_not_of('0') == std::string::npos) {
         results = "0";
     }
+    else {
+        if (results[0] == '0') {
+            int index = results.find_first_not_of('0');
+            results = results.substr(index, results.length() - 1);
+        }
+    }
+
 
     return BigNumber(results);
 }
@@ -298,6 +313,14 @@ std::ostream &operator<<(std::ostream &os, const BigNumber &num) {
 }
 
 BigNumber operator+(BigNumber b1, const BigNumber &b2) {
+    return b1.add(b2);
+}
+
+BigNumber operator+(BigNumber b1, const long long &b2) {
+    return b1.add(b2);
+}
+
+BigNumber operator+(BigNumber b1, const std::string &b2) {
     return b1.add(b2);
 }
 

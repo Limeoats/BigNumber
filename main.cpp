@@ -10,6 +10,9 @@ int main() {
     assert((BigNumber("15535") + BigNumber("0")).getString() == "15535");
     assert((BigNumber("126") + BigNumber("39285")).getString() == "39411");
     assert((BigNumber("0") + BigNumber("0")).getString() == "0");
+    assert(BigNumber(5) + 10 == 15);
+    assert(BigNumber("-41") + 40 == -1);
+
 
     //Subtraction
     assert((BigNumber("50") - BigNumber("32")).getString() == "18");
