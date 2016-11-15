@@ -4,8 +4,8 @@
 
 int main() {
     //Addition
-    assert((BigNumber("50") + BigNumber("32")).getString() == "82");
-    assert((BigNumber("5") + BigNumber("622")).getString() == "627");
+    assert((BigNumber(50) + BigNumber(32)).getString() == "82");
+    assert((BigNumber(5) + BigNumber(622)).getString() == "627");
     assert((BigNumber("-33") + BigNumber("8")).getString() == "-25");
     assert((BigNumber("15535") + BigNumber("0")).getString() == "15535");
     assert((BigNumber("126") + BigNumber("39285")).getString() == "39411");
@@ -114,6 +114,28 @@ int main() {
 
     //Set string
     assert(BigNumber("234").setString("-45").getString() == "-45");
+
+    //Assignment operator
+    BigNumber c(10);
+    c = 5;
+    assert(c == 5);
+    assert(c == BigNumber(5));
+    assert(c == BigNumber("5"));
+    c = "83833";
+    assert(c == 83833);
+    assert(c == BigNumber(83833));
+    assert(c == BigNumber("83833"));
+
+    //Equals testing
+    BigNumber d(40);
+    assert(d == 40);
+    assert(d == "40");
+    assert(d == BigNumber("40"));
+    assert(d == BigNumber(40));
+    d = 40;
+    assert(d == 40);
+    d = "40";
+    assert(d == 40);
 
     std::cout << "BigNumber ran successfully." << std::endl;
 }

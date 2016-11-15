@@ -31,6 +31,10 @@ BigNumber::BigNumber(std::string number) :
 {
 }
 
+BigNumber::BigNumber(long long number) :
+    _numberString(std::to_string(number))
+{}
+
 BigNumber BigNumber::add(BigNumber other) {
     if (this->isNegative() || other.isNegative()) {
         if (this->isNegative() && other.isNegative()) {
@@ -313,6 +317,14 @@ bool operator==(BigNumber b1, const BigNumber &b2) {
     return b1.equals(b2);
 }
 
+bool operator==(BigNumber b1, const long long &b2) {
+    return b1.getString() == std::to_string(b2);
+}
+
+bool operator==(BigNumber b1, const std::string &b2) {
+    return b1.getString() == b2;
+}
+
 bool operator>(BigNumber b1, const BigNumber &b2) {
     if (b1.isNegative() || b2.isNegative()) {
         if (b1.isNegative() && b2.isNegative()) {
@@ -366,6 +378,16 @@ int BigNumber::operator[](int index) {
 
 BigNumber& BigNumber::operator=(const BigNumber &other) {
     this->_numberString = other._numberString;
+    return *this;
+}
+
+BigNumber& BigNumber::operator=(const long long &other) {
+    this->_numberString = std::to_string(other);
+    return *this;
+}
+
+BigNumber& BigNumber::operator=(const std::string &other) {
+    this->_numberString = other;
     return *this;
 }
 

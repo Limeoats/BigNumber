@@ -40,6 +40,8 @@ public:
      */
     BigNumber(std::string number);
 
+    BigNumber(long long number);
+
     /* Add function
      * Adds another big number to the current instance
      *  Params:
@@ -176,6 +178,8 @@ public:
     friend BigNumber operator^(BigNumber b1, const int &b2);
     //Equals operator
     friend bool operator==(BigNumber b1, const BigNumber &b2);
+    friend bool operator==(BigNumber b1, const long long &b2);
+    friend bool operator==(BigNumber b1, const std::string &b2);
     //Greater than operator
     friend bool operator>(BigNumber b1, const BigNumber &b2);
     //Less than operator
@@ -187,6 +191,8 @@ public:
 
     //Assignment operator
     BigNumber& operator=(const BigNumber &other);
+    BigNumber& operator=(const long long &other);
+    BigNumber& operator=(const std::string &other);
     BigNumber& operator+=(const BigNumber &other);
     BigNumber& operator-=(const BigNumber &other);
     BigNumber& operator*=(const BigNumber &other);
