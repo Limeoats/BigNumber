@@ -12,6 +12,11 @@ int main() {
     assert((BigNumber("0") + BigNumber("0")).getString() == "0");
     assert(BigNumber(5) + 10 == 15);
     assert(BigNumber("-41") + 40 == -1);
+    BigNumber ad1(600);
+    ad1 += 50;
+    ad1 += "50";
+    assert(ad1.getString() == "700");
+    assert(ad1 == 700);
 
 
     //Subtraction
@@ -23,6 +28,13 @@ int main() {
     assert((BigNumber("6828") - BigNumber("1")).getString() == "6827");
     assert((BigNumber("100") - BigNumber("50")).getString() == "50");
     assert((BigNumber("42") - BigNumber("49")).getString() == "-7");
+    BigNumber sb1 = 200;
+    sb1 -= 40;
+    assert(sb1 == 160);
+    sb1 = sb1 - 180;
+    assert(sb1 == "-20");
+    sb1 -= "20";
+    assert(sb1 == BigNumber(-40));
 
     //Multiplication
     assert((BigNumber("4") * BigNumber("12")).getString() == "48");
@@ -31,6 +43,14 @@ int main() {
     assert((BigNumber("-5") * BigNumber("5")).getString() == "-25");
     assert((BigNumber("-33") * BigNumber("-2")).getString() == "66");
     assert((BigNumber("283") * BigNumber("382871")).getString() == "108352493");
+    BigNumber ml1 = 4;
+    ml1 *= 6;
+    assert(ml1 == "24");
+    ml1 = BigNumber(5) * 6;
+    assert(ml1 == 30);
+    ml1 *= "5000";
+    assert(ml1 == 150000);
+
 
     //Exponentiation
     assert((BigNumber("2").pow(3)).getString() == "8");
@@ -139,6 +159,7 @@ int main() {
     assert(d == 40);
     d = "40";
     assert(d == 40);
+
 
     std::cout << "BigNumber ran successfully." << std::endl;
 }

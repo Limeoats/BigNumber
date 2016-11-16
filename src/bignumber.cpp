@@ -182,15 +182,19 @@ BigNumber BigNumber::subtract(BigNumber other) {
     if (results.find_first_not_of('0') == std::string::npos) {
         results = "0";
     }
-    else {
-        if (results[0] == '0') {
-            int index = results.find_first_not_of('0');
-            results = results.substr(index, results.length() - 1);
-        }
+    else if (results[0] == '0') {
+        int index = results.find_first_not_of('0');
+        results = results.substr(index, results.length() - 1);
     }
-
-
     return BigNumber(results);
+}
+
+BigNumber BigNumber::subtract(long long &other) {
+    return this->subtract(BigNumber(other));
+}
+
+BigNumber BigNumber::subtract(std::string &other) {
+    return this->subtract(BigNumber(other));
 }
 
 
@@ -245,6 +249,14 @@ BigNumber BigNumber::multiply(BigNumber other) {
     return b;
 }
 
+BigNumber BigNumber::multiply(long long &other) {
+    return this->multiply(BigNumber(other));
+}
+
+BigNumber BigNumber::multiply(std::string &other) {
+    return this->multiply(BigNumber(other));
+}
+
 BigNumber BigNumber::pow(int exponent) {
     if (exponent < 0) std::cerr << "Powers less than 0 are not supported" << std::endl;
     if (exponent == 0) return BigNumber("1");
@@ -281,6 +293,14 @@ BigNumber BigNumber::negate() {
 
 bool BigNumber::equals(const BigNumber &other) {
     return this->_numberString == other._numberString;
+}
+
+bool BigNumber::equals(const long long &other) {
+    return this->getString() == std::to_string(other);
+}
+
+bool BigNumber::equals(const std::string &other) {
+    return this->getString() == other;
 }
 
 int BigNumber::digits() {
@@ -328,7 +348,23 @@ BigNumber operator-(BigNumber b1, const BigNumber &b2) {
     return b1.subtract(b2);
 }
 
+BigNumber operator-(BigNumber b1, const long long &b2) {
+    return b1.subtract(b2);
+}
+
+BigNumber operator-(BigNumber b1, const std::string &b2) {
+    return b1.subtract(b2);
+}
+
 BigNumber operator*(BigNumber b1, const BigNumber &b2) {
+    return b1.multiply(b2);
+}
+
+BigNumber operator*(BigNumber b1, const long long &b2) {
+    return b1.multiply(b2);
+}
+
+BigNumber operator*(BigNumber b1, const std::string &b2) {
     return b1.multiply(b2);
 }
 
@@ -341,11 +377,11 @@ bool operator==(BigNumber b1, const BigNumber &b2) {
 }
 
 bool operator==(BigNumber b1, const long long &b2) {
-    return b1.getString() == std::to_string(b2);
+    return b1.equals(b2);
 }
 
 bool operator==(BigNumber b1, const std::string &b2) {
-    return b1.getString() == b2;
+    return b1.equals(b2);
 }
 
 bool operator>(BigNumber b1, const BigNumber &b2) {
@@ -419,12 +455,42 @@ BigNumber& BigNumber::operator+=(const BigNumber &other) {
     return *this;
 }
 
+BigNumber& BigNumber::operator+=(const long long &other) {
+    *this = *this + other;
+    return *this;
+}
+
+BigNumber& BigNumber::operator+=(const std::string &other) {
+    *this = *this + other;
+    return *this;
+}
+
 BigNumber& BigNumber::operator-=(const BigNumber &other) {
     *this = *this - other;
     return *this;
 }
 
+BigNumber& BigNumber::operator-=(const long long &other) {
+    *this = *this - other;
+    return *this;
+}
+
+BigNumber& BigNumber::operator-=(const std::string &other) {
+    *this = *this - other;
+    return *this;
+}
+
 BigNumber& BigNumber::operator*=(const BigNumber &other) {
+    *this = *this * other;
+    return *this;
+}
+
+BigNumber& BigNumber::operator*=(const long long &other) {
+    *this = *this * other;
+    return *this;
+}
+
+BigNumber& BigNumber::operator*=(const std::string &other) {
     *this = *this * other;
     return *this;
 }
