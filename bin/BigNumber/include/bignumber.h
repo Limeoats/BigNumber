@@ -50,6 +50,8 @@ public:
      *    The sum of the two big numbers
      */
     BigNumber add(BigNumber other);
+    BigNumber add(long long &other);
+    BigNumber add(std::string &other);
 
     /* Subtract function
      * Subracts another big number from the current instance
@@ -59,6 +61,8 @@ public:
      *    The difference of the two big numbers
      */
     BigNumber subtract(BigNumber other);
+    BigNumber subtract(long long &other);
+    BigNumber subtract(std::string  &other);
 
     /* Multiply function
      * Multiplies the big number by another big number
@@ -68,6 +72,8 @@ public:
      *    The product of the two numbers
      */
     BigNumber multiply(BigNumber other);
+    BigNumber multiply(long long &other);
+    BigNumber multiply(std::string &other);
 
     /* pow function
      * Raises the big number to the power of the exponent
@@ -109,6 +115,8 @@ public:
      *    True if equal, otherwise false
      */
     bool equals(const BigNumber &other);
+    bool equals(const long long &other);
+    bool equals(const std::string &other);
 
     /* digits function
      * Returns the number of digits in the big number
@@ -169,10 +177,16 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const BigNumber &num);
     //Plus operator
     friend BigNumber operator+(BigNumber b1, const BigNumber &b2);
+    friend BigNumber operator+(BigNumber b1, const long long &b2);
+    friend BigNumber operator+(BigNumber b1, const std::string &b2);
     //Minus operator
     friend BigNumber operator-(BigNumber b1, const BigNumber &b2);
+    friend BigNumber operator-(BigNumber b1, const long long &b2);
+    friend BigNumber operator-(BigNumber b1, const std::string &b2);
     //Multiplication operator
     friend BigNumber operator*(BigNumber b1, const BigNumber &b2);
+    friend BigNumber operator*(BigNumber b1, const long long &b2);
+    friend BigNumber operator*(BigNumber b1, const std::string &b2);
 
     //Exponent operator
     friend BigNumber operator^(BigNumber b1, const int &b2);
@@ -194,8 +208,14 @@ public:
     BigNumber& operator=(const long long &other);
     BigNumber& operator=(const std::string &other);
     BigNumber& operator+=(const BigNumber &other);
+    BigNumber& operator+=(const long long &other);
+    BigNumber& operator+=(const std::string &other);
     BigNumber& operator-=(const BigNumber &other);
+    BigNumber& operator-=(const long long &other);
+    BigNumber& operator-=(const std::string &other);
     BigNumber& operator*=(const BigNumber &other);
+    BigNumber& operator*=(const long long &other);
+    BigNumber& operator*=(const std::string &other);
 
     //Increment/Decrement operators
     BigNumber& operator++();    //Prefix
