@@ -8,12 +8,10 @@ integers.
 The maximum possible length of a BigNumber is `string::max_size`.
 
 ## Installation
-To add BigNumber to your C++ project, download
-[bignumber.cpp](https://github.com/Limeoats/BigNumber/blob/master/src/bignumber.cpp)
-and [bignumber.h](https://github.com/Limeoats/BigNumber/blob/master/src/bignumber.h)
-from this Github repository and include them in your project.
+To add BigNumber to your C++ project, you can download the `bin` folder from this repository, which 
+contains the library and include files.
 
-Then, simply include the header file in whichever file you need a BigNumber.
+Then, simply include the header file in whichever file you need a BigNumber and link to the library file.
 
 `#include "bignumber.h"`
 
@@ -21,7 +19,8 @@ Then, simply include the header file in whichever file you need a BigNumber.
 ###`BigNumber(string)`
 
 
-You can also use the `=` operator to set a BigNumber equal to an existing BigNumber.
+You can also use the `=` operator to set a BigNumber equal to an existing BigNumber, a number, or 
+a string of numbers.
 
 Examples:
 
@@ -29,6 +28,9 @@ Examples:
     BigNumber c("-20");     //BigNumber c is created with value -20.
     BigNumber d("0");       //BigNumber d is created with value 0.
     BigNumber e = b;        //BigNumber e is created with value 5.
+    BigNumber f = 30;       //BigNumber f is created with value 30.
+    BigNumber g = "2060";   //BigNumber g is created with value 2060.
+    BigNumber h(22);        //BigNumber h is created with value 22.
 
 
 ##Methods
