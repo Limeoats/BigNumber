@@ -303,7 +303,7 @@ bool BigNumber::equals(const std::string &other) {
     return this->getString() == other;
 }
 
-int BigNumber::digits() {
+unsigned int BigNumber::digits() {
     return this->_numberString.length() - static_cast<int>(this->isNegative());
 }
 
@@ -407,10 +407,10 @@ bool operator>(BigNumber b1, const BigNumber &b2) {
     }
     else {
         for (unsigned int i = 0; i < b1._numberString.size(); ++i) {
-            if (b1[i] == (b2._numberString[i] - '0')) {
+            if (b1[i] == static_cast<unsigned int>(b2._numberString[i] - '0')) {
                 continue;
             }
-            return b1[i] > (b2._numberString[i] - '0');
+            return b1[i] > static_cast<unsigned int>(b2._numberString[i] - '0');
         }
     }
     return false;
@@ -428,11 +428,11 @@ bool operator<=(BigNumber b1, const BigNumber &b2) {
     return b1 < b2 || b1 == b2;
 }
 
-int BigNumber::operator[](int index) {
+unsigned int BigNumber::operator[](int index) {
     if (this->_numberString[index] == '-') {
         std::cerr << "You cannot get the negative sign from the number" << std::endl;
     }
-    return this->_numberString[index] - '0';
+    return static_cast<unsigned int>(this->_numberString[index] - '0');
 }
 
 BigNumber& BigNumber::operator=(const BigNumber &other) {

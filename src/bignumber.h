@@ -124,7 +124,7 @@ public:
      * Returns:
      *    The number of digits in the big number
      */
-    int digits();
+    unsigned int digits();
 
     /*
      * Method: isNegative
@@ -224,7 +224,7 @@ public:
     BigNumber operator--(int); //Postfix
 
     //Index operator
-    int operator[](int index);
+    unsigned int operator[](int index);
 
 private:
     std::string _numberString;      //The big number represented as a string
