@@ -2,7 +2,7 @@
 # Mark Guerra
 # 11/1/2015
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8)
 project(BigNumber)
 
 set(BigNumber_VERSION_MAJOR 1)
@@ -15,6 +15,8 @@ else()
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Weffc++ -pedantic -Wno-unused-function ${c++version}")
+
+set(CMAKE_BUILD_TYPE Release)
 
 set(SOURCE_FILES
         src/bignumber.cpp  main.cpp )
