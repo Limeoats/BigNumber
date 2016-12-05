@@ -50,8 +50,6 @@ public:
      *    The sum of the two big numbers
      */
     BigNumber add(BigNumber other);
-    BigNumber add(long long &other);
-    BigNumber add(std::string &other);
 
     /* Subtract function
      * Subracts another big number from the current instance
@@ -61,8 +59,6 @@ public:
      *    The difference of the two big numbers
      */
     BigNumber subtract(BigNumber other);
-    BigNumber subtract(long long &other);
-    BigNumber subtract(std::string  &other);
 
     /* Multiply function
      * Multiplies the big number by another big number
@@ -72,8 +68,6 @@ public:
      *    The product of the two numbers
      */
     BigNumber multiply(BigNumber other);
-    BigNumber multiply(long long &other);
-    BigNumber multiply(std::string &other);
 
     /* pow function
      * Raises the big number to the power of the exponent
@@ -228,6 +222,14 @@ public:
 
 private:
     std::string _numberString;      //The big number represented as a string
+
+    //Methods
+    BigNumber addll(const long long &other);
+    BigNumber addstr(const std::string &other);
+    BigNumber subtractll(const long long &other);
+    BigNumber subtractstr(const std::string  &other);
+    BigNumber multiplyll(const long long &other);
+    BigNumber multiplystr(const std::string &other);
 };
 
 

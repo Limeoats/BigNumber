@@ -69,11 +69,11 @@ BigNumber BigNumber::add(BigNumber other) {
     return BigNumber(results);
 }
 
-BigNumber BigNumber::add(long long &other) {
+BigNumber BigNumber::addll(const long long &other) {
     return this->add(BigNumber(other));
 }
 
-BigNumber BigNumber::add(std::string &other) {
+BigNumber BigNumber::addstr(const std::string &other) {
     return this->add(BigNumber(other));
 }
 
@@ -189,14 +189,13 @@ BigNumber BigNumber::subtract(BigNumber other) {
     return BigNumber(results);
 }
 
-BigNumber BigNumber::subtract(long long &other) {
+BigNumber BigNumber::subtractll(const long long &other) {
     return this->subtract(BigNumber(other));
 }
 
-BigNumber BigNumber::subtract(std::string &other) {
+BigNumber BigNumber::subtractstr(const std::string &other) {
     return this->subtract(BigNumber(other));
 }
-
 
 BigNumber BigNumber::multiply(BigNumber other) {
     if (this->isNegative() || other.isNegative()) {
@@ -249,11 +248,19 @@ BigNumber BigNumber::multiply(BigNumber other) {
     return b;
 }
 
-BigNumber BigNumber::multiply(long long &other) {
-    return this->multiply(BigNumber(other));
+BigNumber BigNumber::multiplyll(const long long &other) {
+    if (other == 0)
+        return 0;
+    if (other == 1)
+        return *this;
+    auto original = *this;
+    for (auto i = 0; i < other - 1; ++i) {
+        *this += original;
+    }
+    return *this;
 }
 
-BigNumber BigNumber::multiply(std::string &other) {
+BigNumber BigNumber::multiplystr(const std::string &other) {
     return this->multiply(BigNumber(other));
 }
 
@@ -337,11 +344,11 @@ BigNumber operator+(BigNumber b1, const BigNumber &b2) {
 }
 
 BigNumber operator+(BigNumber b1, const long long &b2) {
-    return b1.add(b2);
+    return b1.addll(b2);
 }
 
 BigNumber operator+(BigNumber b1, const std::string &b2) {
-    return b1.add(b2);
+    return b1.addstr(b2);
 }
 
 BigNumber operator-(BigNumber b1, const BigNumber &b2) {
@@ -349,11 +356,11 @@ BigNumber operator-(BigNumber b1, const BigNumber &b2) {
 }
 
 BigNumber operator-(BigNumber b1, const long long &b2) {
-    return b1.subtract(b2);
+    return b1.subtractll(b2);
 }
 
 BigNumber operator-(BigNumber b1, const std::string &b2) {
-    return b1.subtract(b2);
+    return b1.subtractstr(b2);
 }
 
 BigNumber operator*(BigNumber b1, const BigNumber &b2) {
@@ -361,11 +368,11 @@ BigNumber operator*(BigNumber b1, const BigNumber &b2) {
 }
 
 BigNumber operator*(BigNumber b1, const long long &b2) {
-    return b1.multiply(b2);
+    return b1.multiplyll(b2);
 }
 
 BigNumber operator*(BigNumber b1, const std::string &b2) {
-    return b1.multiply(b2);
+    return b1.multiplystr(b2);
 }
 
 BigNumber operator^(BigNumber b1, const int &b2) {

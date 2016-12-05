@@ -1,8 +1,18 @@
+////////////////////////////
+//To make sure assert works:
+#ifdef NDEBUG
+#undef NDEBUG
+#endif
+////////////////////////////
+
 #include "src/bignumber.h"
 
 #include <assert.h>
 
+
+
 int main() {
+
     //Addition
     assert((BigNumber(50) + BigNumber(32)).getString() == "82");
     assert((BigNumber(5) + BigNumber(622)).getString() == "627");
@@ -17,7 +27,6 @@ int main() {
     ad1 += "50";
     assert(ad1.getString() == "700");
     assert(ad1 == 700);
-
 
     //Subtraction
     assert((BigNumber("50") - BigNumber("32")).getString() == "18");
