@@ -228,6 +228,7 @@ public:
 
 private:
     std::string _numberString;      //The big number represented as a string
+    bool _sign;
 };
 
 
