@@ -268,13 +268,13 @@ BigNumber BigNumber::pow(int exponent) {
     if (exponent < 0) std::cerr << "Powers less than 0 are not supported" << std::endl;
     if (exponent == 0) return BigNumber("1");
     if (exponent == 1) return *this;
-    BigNumber result("1");
+    BigNumber result = 1, base = *this;
     while (exponent) {
         if (exponent & 1) {
-            result *= *this;
+            result *= base;
         }
         exponent >>= 1;
-        *this *= *this;
+        base *= base;
     }
     return result;
 }
