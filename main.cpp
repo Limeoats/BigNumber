@@ -12,7 +12,6 @@
 
 
 int main() {
-
     //Addition
     assert((BigNumber(50) + BigNumber(32)).getString() == "82");
     assert((BigNumber(5) + BigNumber(622)).getString() == "627");
@@ -37,6 +36,7 @@ int main() {
     assert((BigNumber("6828") - BigNumber("1")).getString() == "6827");
     assert((BigNumber("100") - BigNumber("50")).getString() == "50");
     assert((BigNumber("42") - BigNumber("49")).getString() == "-7");
+    assert((BigNumber("100") - BigNumber("5")) == 95);
     BigNumber sb1 = 200;
     sb1 -= 40;
     assert(sb1 == 160);
@@ -60,6 +60,17 @@ int main() {
     ml1 *= "5000";
     assert(ml1 == 150000);
 
+    //Division
+    assert(BigNumber("25").divide(BigNumber("5")) == 5);
+    assert(BigNumber("48").divide(BigNumber("6")) == 8);
+    assert(BigNumber("100").divide(BigNumber("5")) == 20);
+    BigNumber dv1 = 100;
+    dv1 /= 25;
+    assert(dv1 == 4);
+    dv1 = dv1 / dv1;
+    assert(dv1 == 1);
+    dv1 /= 1;
+    assert(dv1 == 1);
 
     //Exponentiation
     assert((BigNumber("2").pow(3)).getString() == "8");

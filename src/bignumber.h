@@ -68,6 +68,15 @@ public:
      *    The product of the two numbers
      */
     BigNumber multiply(BigNumber other);
+    
+    /* Division function
+     * Divides the big number by another big number
+     *  Params:
+     *    BigNumber other - the other big number to divide by
+     *  Returns:
+     *    The quotient of the two numbers
+     */
+    BigNumber divide(BigNumber other);
 
     /* pow function
      * Raises the big number to the power of the exponent
@@ -181,6 +190,10 @@ public:
     friend BigNumber operator*(BigNumber b1, const BigNumber &b2);
     friend BigNumber operator*(BigNumber b1, const long long &b2);
     friend BigNumber operator*(BigNumber b1, const std::string &b2);
+    //Division operator
+    friend BigNumber operator/(BigNumber b1, const BigNumber &b2);
+    friend BigNumber operator/(BigNumber b1, const long long &b2);
+    friend BigNumber operator/(BigNumber b1, const std::string &b2);
 
     //Exponent operator
     friend BigNumber operator^(BigNumber b1, const int &b2);
@@ -210,6 +223,9 @@ public:
     BigNumber& operator*=(const BigNumber &other);
     BigNumber& operator*=(const long long &other);
     BigNumber& operator*=(const std::string &other);
+    BigNumber& operator/=(const BigNumber &other);
+    BigNumber& operator/=(const long long &other);
+    BigNumber& operator/=(const std::string &other);
 
     //Increment/Decrement operators
     BigNumber& operator++();    //Prefix
@@ -230,6 +246,8 @@ private:
     BigNumber subtractstr(const std::string  &other);
     BigNumber multiplyll(const long long &other);
     BigNumber multiplystr(const std::string &other);
+    BigNumber dividell(const long long &other);
+    BigNumber dividestr(const std::string &other);
 };
 
 

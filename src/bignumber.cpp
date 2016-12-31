@@ -105,6 +105,14 @@ BigNumber BigNumber::subtract(BigNumber other) {
         return BigNumber(t);
     }
 
+    //This next if-block fixes the case where the digit difference is greater than 1
+    //100 - 5 is an example. This code adds 0's to make it, for example, 100 - 05, which
+    //allows the rest of the subtraction code to work.
+    if (this->_numberString.size() - other.getString().size() > 1) {
+        for (unsigned long i = 0; i < this->_numberString.size() - other.getString().size() - 1; ++i) {
+            other._numberString.insert(other._numberString.begin(), '0');
+        }
+    }
     int i = int(this->_numberString.size() - 1);
     for (int j = int(other._numberString.size() - 1); j >= 0; --j) {
         if (((this->_numberString[i] - '0') < (other._numberString[j] - '0')) && i > 0) {
@@ -264,6 +272,24 @@ BigNumber BigNumber::multiplystr(const std::string &other) {
     return this->multiply(BigNumber(other));
 }
 
+BigNumber BigNumber::divide(BigNumber other) {
+    BigNumber tmp1 = *this, tmp2 = other;
+    long long quotient = 0;
+    while (tmp1 >= tmp2) {
+        tmp1 -= tmp2;
+        ++quotient;
+    }
+    return quotient;
+}
+
+BigNumber BigNumber::dividell(const long long &other) {
+    return this->divide(BigNumber(other));
+}
+
+BigNumber BigNumber::dividestr(const std::string &other) {
+    return this->divide(BigNumber(other));
+}
+
 BigNumber BigNumber::pow(int exponent) {
     if (exponent < 0) std::cerr << "Powers less than 0 are not supported" << std::endl;
     if (exponent == 0) return BigNumber("1");
@@ -373,6 +399,18 @@ BigNumber operator*(BigNumber b1, const long long &b2) {
 
 BigNumber operator*(BigNumber b1, const std::string &b2) {
     return b1.multiplystr(b2);
+}
+
+BigNumber operator/(BigNumber b1, const BigNumber &b2) {
+    return b1.divide(b2);
+}
+
+BigNumber operator/(BigNumber b1, const long long &b2) {
+    return b1.dividell(b2);
+}
+
+BigNumber operator/(BigNumber b1, const std::string &b2) {
+    return b1.dividestr(b2);
 }
 
 BigNumber operator^(BigNumber b1, const int &b2) {
@@ -499,6 +537,21 @@ BigNumber& BigNumber::operator*=(const long long &other) {
 
 BigNumber& BigNumber::operator*=(const std::string &other) {
     *this = *this * other;
+    return *this;
+}
+
+BigNumber& BigNumber::operator/=(const BigNumber &other) {
+    *this = *this / other;
+    return *this;
+}
+
+BigNumber& BigNumber::operator/=(const long long &other) {
+    *this = *this / other;
+    return *this;
+}
+
+BigNumber& BigNumber::operator/=(const std::string &other) {
+    *this = *this / other;
     return *this;
 }
 

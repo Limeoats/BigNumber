@@ -23,6 +23,8 @@ set(SOURCE_FILES
 
 add_library(BigNumber ${SOURCE_FILES})
 
+set(CMAKE_BUILD_TYPE Debug)
+
 if(WIN32)
     install(TARGETS BigNumber DESTINATION C:/Libs/BigNumber/lib)
     install(FILES src/bignumber.h DESTINATION C:/Libs/BigNumber/include)
