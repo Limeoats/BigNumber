@@ -273,12 +273,29 @@ BigNumber BigNumber::multiplystr(const std::string &other) {
 }
 
 BigNumber BigNumber::divide(BigNumber other) {
+    if (other == 0) {
+        std::cerr << "You cannot divide by 0!" << std::endl;
+    }
     BigNumber tmp1 = *this, tmp2 = other;
-    long long quotient = 0;
+    bool sign = false;
+    if (tmp1.isNegative() && tmp2.isNegative()) {
+        tmp1.negate();
+        tmp2.negate();
+    }
+    else if (tmp1.isNegative() && !tmp2.isNegative()) {
+        tmp1.negate();
+        sign = true;
+    }
+    else if (!tmp1.isNegative() && tmp2.isNegative()) {
+        tmp2.negate();
+        sign = true;
+    }
+    BigNumber quotient = 0;
     while (tmp1 >= tmp2) {
         tmp1 -= tmp2;
         ++quotient;
     }
+    if (sign) quotient.negate();
     return quotient;
 }
 

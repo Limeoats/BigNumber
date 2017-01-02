@@ -6,10 +6,7 @@
 ////////////////////////////
 
 #include "src/bignumber.h"
-
 #include <assert.h>
-
-
 
 int main() {
     //Addition
@@ -71,6 +68,15 @@ int main() {
     assert(dv1 == 1);
     dv1 /= 1;
     assert(dv1 == 1);
+    dv1 = -5;
+    dv1 /= 5;
+    assert(dv1 == -1);
+    dv1 = 3000;
+    dv1 /= 300;
+    assert(dv1 == 10);
+    dv1 = 25485;
+    dv1 /= 5;
+    assert(dv1 == "5097");
 
     //Exponentiation
     assert((BigNumber("2").pow(3)).getString() == "8");

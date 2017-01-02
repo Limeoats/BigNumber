@@ -49,6 +49,11 @@ Multiplies the BigNumber by another BigNumber
 
 `BigNumber("12").multiply(BigNumber("4")) => BigNumber("48")`
 
+###`divide(BigNumber other)`
+Divides the BigNumber by another BigNumber
+
+`BigNumber("30").divide(BigNumber("5")) => BigNumber("6")`
+
 ###`pow(int exponent)`
 Raises the BigNumber to the power of the exponent
 
@@ -129,6 +134,11 @@ Multiplication operator
 
 `BigNumber("-20") * BigNumber("-5") => BigNumber("100")`
 
+###`/`
+Division operator
+
+`BigNumber("10") / BigNumber("-2") => BigNumber("-5")`
+
 ###`==`
 Equal to operator
 
@@ -173,6 +183,11 @@ Subtracts and assigns to the BigNumber
 Multiplies and assigns to the BigNumber
 
 `BigNumber c("3") *= BigNumber("4") => BigNumber("12")`
+
+###`/=`
+Divides and assigns to the BigNumber
+
+`BigNumber c("30") /= BigNumber("30") => BigNumer("1")`
 
 ###`++ (Prefix)`
 Increments the BigNumber and returns the newly incremented number
