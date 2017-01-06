@@ -217,6 +217,7 @@ BigNumber BigNumber::multiply(BigNumber other) {
             return other.negate().multiply(*this).negate();
         }
     }
+    if (*this == 0 || other == 0) return 0;
     int carry = 0;
     int zeroCounter = 0;
     BigNumber b("0");
