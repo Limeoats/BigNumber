@@ -26,214 +26,317 @@
 #include <string>
 #include <iostream>
 
-/* BigNumber class
- * Stores a very large number
- * Also contains functions and operators to perform mathematical operations on them
+/**
+ * BigNumber class
  */
 class BigNumber {
 public:
-    /* Main constructor
-     * Initializes member variables with number values
-     *  Params:
-     *    string number - the big number represented as a string
-     *  Returns: None
+    //@{
+    /**
+     * BigNumber constructor
+     * @param number - The initial value of the BigNumber
      */
     BigNumber(std::string number);
-
     BigNumber(long long number);
+    //@}
 
-    /* Add function
-     * Adds another big number to the current instance
-     *  Params:
-     *    BigNumber other - the other big number to be added
-     *  Returns:
-     *    The sum of the two big numbers
+    /**
+     * Add another BigNumber to the current instance
+     * @param other - The other BigNumber
+     * @return The sum of the two BigNumbers
      */
     BigNumber add(BigNumber other);
 
-    /* Subtract function
-     * Subracts another big number from the current instance
-     *  Params:
-     *    BigNumber other - the other big number to be subtracted
-     *  Returns:
-     *    The difference of the two big numbers
+    /**
+     * Subtract another BigNumber from the current instance
+     * @param other - The other BigNumber
+     * @return The difference of the two BigNumbers
      */
     BigNumber subtract(BigNumber other);
 
-    /* Multiply function
-     * Multiplies the big number by another big number
-     *  Params:
-     *    BigNumber other - the other big number to multiply by
-     *  Returns:
-     *    The product of the two numbers
+    /**
+     * Multiply the current instance by another BigNumber
+     * @param other - The other BigNumber
+     * @return The product of the two BigNumbers
      */
     BigNumber multiply(BigNumber other);
     
-    /* Division function
-     * Divides the big number by another big number
-     *  Params:
-     *    BigNumber other - the other big number to divide by
-     *  Returns:
-     *    The quotient of the two numbers
+    /**
+     * Divide the current instance by another BigNumber
+     * @param other - The other BigNumber
+     * @return The quotient of the two BigNumbers
      */
     BigNumber divide(BigNumber other);
 
-    /* pow function
-     * Raises the big number to the power of the exponent
-     *  Params:
-     *    BigNumber exponent - the exponent to raise the big number to
-     *  Returns:
-     *    The new big number after being raised to the provided exponent
+    /**
+     * Raise the current instance to the power of an exponent
+     * @param exponent - The power to be raised by
+     * @return - The resulting BigNumber after exponentiation
      */
     BigNumber pow(int exponent);
 
-    /* getString function
-     * Turns the big number into an std::string and returns it
-     *  Params: None
-     *  Returns:
-     *    The big number represented as an std::string
+    /**
+     * Get the string value of the current instance
+     * @return The BigNumber as a string
      */
     std::string getString();
 
-    /* setString function
-     * Sets the actual number string to a new string
-     *  Params:
-     *    std::string newStr - the new string
-     *  Returns: None
+    /**
+     * Set the value of the current instance with a string
+     * @param newStr - The new value for the BigNumber
+     * @return The BigNumber with the new value
      */
     BigNumber setString(const std::string &newStr);
 
-    /* negate function
-     * Makes the big number negative
-     *  Params: None
-     *  Returns: The newly negated big number
+    /**
+     * Negates the current instance
+     * @return The BigNumber after negation
      */
     BigNumber negate();
 
-    /* equals function
-     * Checks if the other big number is equal to this one
-     *  Params:
-     *    BigNumber other - the other big number being compared
-     *  Returns:
-     *    True if equal, otherwise false
+    //@{
+    /**
+     * Check if another BigNumber is equal to the current instance
+     * @param other - The other BigNumber
+     * @return True if equal, otherwise false
      */
     bool equals(const BigNumber &other);
     bool equals(const long long &other);
     bool equals(const std::string &other);
+    //@}
 
-    /* digits function
-     * Returns the number of digits in the big number
-     * Params: None
-     * Returns:
-     *    The number of digits in the big number
+    /**
+     * Get the number of digits in the current instance
+     * @return The number of digits
      */
     unsigned int digits();
 
-    /*
-     * Method: isNegative
-     * Determines whether a big number is negative
-     * Parameters: None
-     * Returns:
-     *   True if negative, otherwise false
+    /**
+     * Get whether or not the current instance is a negative number
+     * @return True if negative, otherwise false
      */
     bool isNegative() const;
 
-    /*
-     * Method: isPositive
-     * Determines whether a big number is positive
-     * Parameters: None
-     * Returns:
-     *   True if positive, otherwise false
+    /**
+     * Get whether or not the current instance is a positive number
+     * @return True if positive, otherwise false
      */
     bool isPositive();
 
-    /*
-     * Method: isEven
-     * Determines whether a big number is even
-     * Parameters: None
-     * Returns:
-     *   True if even, otherwise false
+    /**
+     * Get whether or not the current instance is an even number
+     * @return True if even, otherwise false
      */
     bool isEven();
 
-    /*
-     * Method: isOdd
-     * Determines whether a big number is odd
-     * Parameters: None
-     * Returns:
-     *   True if odd, otherwise false
+    /**
+     * Get whether or not the current instance is an odd number
+     * @return True if odd, otherwise false
      */
     bool isOdd();
 
-    /*
-     * Method: abs
-     * Gets the absolute value of the big number
-     * Parameters: None
-     * Returns:
-     *  A Big Number containing the absolute value
+    /**
+     * Get the absolute value of the current instance
+     * @return The absolute value of the BigNumber
      */
     BigNumber abs() const;
-
-    //Operator overloads
-
-    //Output stream operator
+    
+    /**
+     * Output stream operator
+     * @param os The output stream
+     * @param num The current instance
+     * @return The output stream with the current instance
+     */
     friend std::ostream &operator<<(std::ostream &os, const BigNumber &num);
-    //Plus operator
+    
+    //@{
+    /**
+     * Addition operator
+     * @param b1 - The current instance
+     * @param b2 - The number being added
+     * @return The sum of the two numbers
+     */
     friend BigNumber operator+(BigNumber b1, const BigNumber &b2);
     friend BigNumber operator+(BigNumber b1, const long long &b2);
     friend BigNumber operator+(BigNumber b1, const std::string &b2);
-    //Minus operator
+    //@}
+    
+    //@{
+    /**
+     * Subtraction operator
+     * @param b1 - The current instance
+     * @param b2 - The number being subtracted
+     * @return The difference of the two numbers
+     */
     friend BigNumber operator-(BigNumber b1, const BigNumber &b2);
     friend BigNumber operator-(BigNumber b1, const long long &b2);
     friend BigNumber operator-(BigNumber b1, const std::string &b2);
-    //Multiplication operator
+    //@}
+    
+    //@{
+    /**
+     * Multiplication operator
+     * @param b1 - The current instance
+     * @param b2 - The number being multiplied by
+     * @return The product of the two numbers
+     */
     friend BigNumber operator*(BigNumber b1, const BigNumber &b2);
     friend BigNumber operator*(BigNumber b1, const long long &b2);
     friend BigNumber operator*(BigNumber b1, const std::string &b2);
-    //Division operator
+    //@}
+    
+    //@{
+    /**
+     * Division operator
+     * @param b1 - The current instance
+     * @param b2 - The number being divided by
+     * @return The quotient of the two numbers
+     */
     friend BigNumber operator/(BigNumber b1, const BigNumber &b2);
     friend BigNumber operator/(BigNumber b1, const long long &b2);
     friend BigNumber operator/(BigNumber b1, const std::string &b2);
-
-    //Exponent operator
+    //@}
+    
+    /**
+     * Exponent operator
+     * @param b1 - The current instance
+     * @param b2 - The exponent
+     * @return The value after exponentiation
+     */
     friend BigNumber operator^(BigNumber b1, const int &b2);
-    //Equals operator
+    
+    //@{
+    /**
+     * Equality operator
+     * @param b1 - The current instance
+     * @param b2 - Another value
+     * @return True if equal, otherwise false
+     */
     friend bool operator==(BigNumber b1, const BigNumber &b2);
     friend bool operator==(BigNumber b1, const long long &b2);
     friend bool operator==(BigNumber b1, const std::string &b2);
-    //Greater than operator
+    //@}
+    
+    /**
+     * Greater-than operator
+     * @param b1 - The current instance
+     * @param b2 - Another BigNumber
+     * @return True if current instance is greater, otherwise false
+     */
     friend bool operator>(BigNumber b1, const BigNumber &b2);
-    //Less than operator
+    
+    /**
+     * Less-than operator
+     * @param b1 - The current instance
+     * @param b2 - Another BigNumber
+     * @return True if current instance is less, otherwise false
+     */
     friend bool operator<(BigNumber b1, const BigNumber &b2);
-    //Greater than or equal to operator
+    
+    /**
+     * Greater-than or equal-to operator
+     * @param b1 - The current instance
+     * @param b2 - Another BigNumber
+     * @return True if current instance is greater or equal, otherwise false
+     */
     friend bool operator>=(BigNumber b1, const BigNumber &b2);
-    //Less than or equal to operator
+    
+    /**
+     * Less-than or equal-to operator
+     * @param b1 - The current instance
+     * @param b2 - Another BigNumber
+     * @return True if current instance is less or equal, otherwise false
+     */
     friend bool operator<=(BigNumber b1, const BigNumber &b2);
 
-    //Assignment operator
+    //@{
+    /**
+     * Assignment operator
+     * @param other - The new value for the BigNumber
+     * @return A BigNumber containing the new value
+     */
     BigNumber& operator=(const BigNumber &other);
     BigNumber& operator=(const long long &other);
     BigNumber& operator=(const std::string &other);
+    //@}
+    
+    //@{
+    /**
+     * Addition assignment operator\n
+     * Adds and assigns a value to the current instance
+     * @param other - The value being added
+     * @return The new value after addition and assignment
+     */
     BigNumber& operator+=(const BigNumber &other);
     BigNumber& operator+=(const long long &other);
     BigNumber& operator+=(const std::string &other);
+    //@}
+    
+    //@{
+    /**
+     * Subtraction assignment operator\n
+     * Subtracts and assigns a value to the current instance
+     * @param other - The value being subtracted
+     * @return The new value after subtraction and assignment
+     */
     BigNumber& operator-=(const BigNumber &other);
     BigNumber& operator-=(const long long &other);
     BigNumber& operator-=(const std::string &other);
+    //@}
+    
+    //@{
+    /**
+     * Multiplication assignment operator\n
+     * Multiplies and assigns a value to the current instance
+     * @param other - The value being multiplied
+     * @return The new value after multiplication and assignment
+     */
     BigNumber& operator*=(const BigNumber &other);
     BigNumber& operator*=(const long long &other);
     BigNumber& operator*=(const std::string &other);
+    //@}
+    
+    //@{
+    /**
+     * Division assignment operator\n
+     * Divides and assigns a value to the current instance
+     * @param other - The value being divided
+     * @return The new value after division and assignment
+     */
     BigNumber& operator/=(const BigNumber &other);
     BigNumber& operator/=(const long long &other);
     BigNumber& operator/=(const std::string &other);
+    //@}
 
-    //Increment/Decrement operators
-    BigNumber& operator++();    //Prefix
-    BigNumber& operator--();    //Prefix
-    BigNumber operator++(int); //Postfix
-    BigNumber operator--(int); //Postfix
+    /**
+     * Pre-increment operator
+     * @return The incremented BigNumber
+     */
+    BigNumber& operator++();
+    
+    /**
+     * Pre-decrement operator
+     * @return The decremented BigNumber
+     */
+    BigNumber& operator--();
+    
+    /**
+     * Post-increment operator
+     * @return The incremented BigNumber
+     */
+    BigNumber operator++(int);
+    
+    /**
+     * Post-decrement operator
+     * @return The decremented BigNumber
+     */
+    BigNumber operator--(int);
 
-    //Index operator
+    /**
+     * The index operator
+     * @param index The position being looked at
+     * @return The number at the specified position in the BigNumber string
+     */
     unsigned int operator[](int index);
 
 private:
