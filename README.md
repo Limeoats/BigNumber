@@ -1,6 +1,7 @@
 # BigNumber
 
 ![BigNumber build](https://travis-ci.org/Limeoats/BigNumber.svg?branch=master)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/Limeoats/BigNumber/blob/master/LICENSE.md)
 
 BigNumber is a C++ class that allows for the creation and computation of arbitrary-length
 integers.
