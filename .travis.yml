@@ -10,24 +10,15 @@ compiler:
   - gcc
   - clang
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo apt-get install -qq g++-4.8;
-    fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      brew update;
-    fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      brew install gcc48;
-    fi
-  - if [ "$CXX" = "g++" ]; then
-        export CXX="g++-5" CC="gcc-5";
-    fi
-  - if [[ "$TRAVIS_OS_NAME" = "osx" ]] && [[ "$CC" = "gcc" ]]; then
-      export CC="gcc-4.8";
-    fi
-  - if [[ "$TRAVIS_OS_NAME" = "osx" ]] && [[ "$CC" = "gcc" ]]; then
-      export CXX="g++-4.8";
-    fi
+  #Linux
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -qq g++-4.8; fi
+  - if [ "$TRAVIS_OS_NAME" != "osx" ] && [ "$CXX" == "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+
+  #OS X
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install gcc48; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$CC" == "gcc" ]; then export CC="gcc-4.8"; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$CC" == "gcc" ]; then export CXX="g++-4.8"; fi
 addons:
   apt:
     sources:
