@@ -24,6 +24,8 @@ install:
     fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$CC" = "gcc" ]; then
       export CC="gcc-4.8";
+    fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ] && [ "$CC" = "gcc" ]; then
       export CXX="g++-4.8";
     fi
 addons:
