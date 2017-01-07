@@ -19,7 +19,15 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       brew install gcc48;
     fi
-  - export CXX="g++-5" CC="gcc-5";
+  - if [ "$CXX" = "g++" ]; then
+        export CXX="g++-5" CC="gcc-5";
+    fi
+  - if [[ "$TRAVIS_OS_NAME" = "osx" ]] && [[ "$CC" = "gcc" ]]; then
+      export CC="gcc-4.8";
+    fi
+  - if [[ "$TRAVIS_OS_NAME" = "osx" ]] && [[ "$CC" = "gcc" ]]; then
+      export CXX="g++-4.8";
+    fi
 addons:
   apt:
     sources:
