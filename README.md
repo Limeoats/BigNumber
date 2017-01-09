@@ -6,7 +6,7 @@
 BigNumber is a C++ class that allows for the creation and computation of arbitrary-length
 integers.
 
-The maximum possible length of a BigNumber is `string::max_size`.
+The maximum possible length of a BigNumber is `std::string::max_size`.
 
 ## Installation
 To add BigNumber to your C++ project, you can download the `bin` folder from this repository, which 
