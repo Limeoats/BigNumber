@@ -93,6 +93,8 @@ public:
      * @return The BigNumber after negation
      */
     BigNumber negate();
+    
+    BigNumber trimLeadingZeros();
 
     //@{
     /**

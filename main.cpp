@@ -110,6 +110,7 @@ int main() {
     assert(BigNumber("-5") >= BigNumber("-10"));
     assert(BigNumber("0") >= BigNumber("0"));
     assert(BigNumber("32") >= BigNumber("-32"));
+    assert(BigNumber("2") >= BigNumber("0001"));
 
     //Less than or equal to
     assert(BigNumber("5") <= BigNumber("10"));

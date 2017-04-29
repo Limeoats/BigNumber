@@ -344,6 +344,14 @@ BigNumber BigNumber::negate() {
     return *this;
 }
 
+BigNumber BigNumber::trimLeadingZeros() {
+    BigNumber b = *this;
+    if (b._numberString.find_first_not_of('0') != std::string::npos) {
+        b.setString(b._numberString.erase(0, b._numberString.find_first_not_of('0')));
+    }
+    return b;
+}
+
 bool BigNumber::equals(const BigNumber &other) {
     return this->_numberString == other._numberString;
 }
@@ -461,21 +469,24 @@ bool operator>(BigNumber b1, const BigNumber &b2) {
             return !(b1.isNegative() && !b2.isNegative());
         }
     }
-    if (b1 == b2) {
+    b1 = b1.trimLeadingZeros();
+    auto c = BigNumber(b2);
+    c = c.trimLeadingZeros();
+    if (b1 == c) {
         return false;
     }
-    if (b1._numberString.size() > b2._numberString.size()) {
+    if (b1._numberString.size() > c._numberString.size()) {
         return true;
     }
-    else if (b2._numberString.size() > b1._numberString.size()) {
+    else if (c._numberString.size() > b1._numberString.size()) {
         return false;
     }
     else {
         for (unsigned int i = 0; i < b1._numberString.size(); ++i) {
-            if (b1[i] == static_cast<unsigned int>(b2._numberString[i] - '0')) {
+            if (b1[i] == static_cast<unsigned int>(c._numberString[i] - '0')) {
                 continue;
             }
-            return b1[i] > static_cast<unsigned int>(b2._numberString[i] - '0');
+            return b1[i] > static_cast<unsigned int>(c._numberString[i] - '0');
         }
     }
     return false;
