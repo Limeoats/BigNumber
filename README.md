@@ -3,6 +3,8 @@
 ![BigNumber build](https://travis-ci.org/Limeoats/BigNumber.svg?branch=master)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/Limeoats/BigNumber/blob/master/LICENSE.md)
 
+<a href='https://ko-fi.com/Q5Q8FGABI' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
 BigNumber is a C++ class that allows for the creation and computation of arbitrary-length
 integers.
 
