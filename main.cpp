@@ -34,6 +34,7 @@ int main() {
     assert((BigNumber("100") - BigNumber("50")).getString() == "50");
     assert((BigNumber("42") - BigNumber("49")).getString() == "-7");
     assert((BigNumber("100") - BigNumber("5")) == 95);
+    assert((BigNumber("-100") - BigNumber("-5")) == -95);
     BigNumber sb1 = 200;
     sb1 -= 40;
     assert(sb1 == 160);
