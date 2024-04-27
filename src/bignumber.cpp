@@ -82,7 +82,7 @@ BigNumber BigNumber::subtract(BigNumber other) {
     BigNumber b1 = *this, b2 = other;
     if (b1.isNegative() || b2.isNegative()) {
         if (b1.isNegative() && b2.isNegative()) {
-            return b1.negate().add(b2.negate()).negate();
+            return b1.negate().subtract(b2.negate()).negate();
         }
         else if (b1.isNegative() && !b2.isNegative()) {
             return b1.negate().add(b2).negate();
